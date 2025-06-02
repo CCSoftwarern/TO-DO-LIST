@@ -13,6 +13,7 @@ CREATE TABLE listaDeTarefas (
     Nome TEXT NOT NULL,
     author_id INTEGER NOT NULL,
     Descricao TEXT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
@@ -21,5 +22,6 @@ CREATE TABLE Tarefas (
     Descricao TEXT NOT NULL,
     Status TEXT NOT NULL,
     ListaID INTEGER NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ListaID) REFERENCES listaDeTarefas(ID)
 );

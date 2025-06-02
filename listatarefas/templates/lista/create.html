@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Nova lista de Tarefas{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="nome">Nome da lista</label>
+    <input name="nome" id="nome" value="{{ request.form['nome'] }}" required>
+    <label for="descricao">Descrição</label>
+    <textarea name="descricao" id="descricao">{{ request.form['descricao'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

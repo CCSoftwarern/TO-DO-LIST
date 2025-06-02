@@ -35,4 +35,8 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import lista
+    app.register_blueprint(lista.bp)
+    app.add_url_rule('/', endpoint='index')
+
     return app
