@@ -20,7 +20,8 @@
             <strong>Status:</strong> {{ tarefa['Status'] }}
           </div>
           {% if g.user['id'] %}
-          <a class="action" href="{{ url_for('lista.updateTarefa', id=tarefa['id']) }}">Editar</a>
+        <a class="action" href="{{ url_for('lista.updateTarefa', idlista=lista.id, id=tarefa['id']) }}">Editar</a>
+
         {% endif %}
         </div>
       </header>
