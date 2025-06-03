@@ -67,6 +67,20 @@ def get_post(id, check_author=True):
 
     return post
 
+
+def get_tarefa(id):
+    tarefa = get_db().execute(
+        'SELECT t.id, descricao, created, status'
+        ' FROM tarefas t '
+        ' WHERE t.id = ?',
+        (id,)
+    ).fetchone()
+
+    if tarefa is None:
+        abort(404, f"Tarefa id {id} doesn't exist.")
+
+    return tarefa
+
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -166,7 +180,7 @@ def createtarefa(id):
 @bp.route('/<int:id>/updatetarefa', methods=('GET', 'POST'))
 @login_required
 def updateTarefa(id):
-    tarefa = get_post(id)
+    tarefa = get_tarefa(id)
 
     if request.method == 'POST':
         descricao = request.form['descricao']
@@ -194,7 +208,7 @@ def updateTarefa(id):
 @bp.route('/<int:id>/deletetarefa', methods=('POST',))
 @login_required
 def deleteTarefa(id):
-    get_post(id)
+    get_tarefa(id)
     db = get_db()
     db.execute('DELETE FROM tarefas WHERE id = ?', (id,))
     db.commit()
