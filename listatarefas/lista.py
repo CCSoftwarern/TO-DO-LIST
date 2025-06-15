@@ -146,7 +146,7 @@ def get_tarefa(id):
     ).fetchone()
 
     if tarefa is None:
-        abort(404, f"Tarefa id {id} doesn't exist.")
+        abort(404, f"Tarefa id {id} não existe")
 
     return tarefa
 
