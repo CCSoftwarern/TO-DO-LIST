@@ -1,5 +1,6 @@
 # autenticação pelo Mysql
 
+
 import functools
 import pymysql  # Importar para capturar IntegrityError
 
