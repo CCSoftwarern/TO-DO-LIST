@@ -1,21 +1,20 @@
 import os
 
 from flask import Flask
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    # app.config.from_mapping(
-    #     SECRET_KEY='dev',
-    #     DATABASE=os.path.join(app.instance_path, 'todolist.sqlite'),
-    # )
     app.config.from_mapping(
-    SECRET_KEY='dev',
-    MYSQL_HOST='localhost',
-    MYSQL_USER='seu_usuario',
-    MYSQL_PASSWORD='sua_senha',
-    MYSQL_DB='nome_do_banco',
+        SECRET_KEY=os.getenv("SECRET_KEY"),
+        MYSQL_HOST=os.getenv("MYSQL_HOST"),
+        MYSQL_USER=os.getenv("MYSQL_USER"),
+        MYSQL_PASSWORD=os.getenv("MYSQL_PASSWORD"),
+        MYSQL_DB=os.getenv("MYSQL_DB"),
 )
 
     if test_config is None:
